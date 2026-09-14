@@ -20,6 +20,9 @@
 
     <div id="stddev-panel" class="tab-panel active">
       <textarea id="nums-stddev" rows="3" placeholder="Enter numbers separated by commas, e.g. 4, 8, 15, 16, 23, 42"></textarea>
+      <label class="scan-btn" for="photo-stddev">📷 Scan a photo for numbers</label>
+      <input type="file" id="photo-stddev" accept="image/*" capture="environment" style="display:none;">
+      <p id="scanStatus-stddev" class="scan-status"></p>
       <button id="calcBtn-stddev">Show steps</button>
       <p id="err-stddev" class="error"></p>
       <div id="steps-stddev" class="steps-box"></div>
@@ -36,6 +39,9 @@
 
     <div id="meanmed-panel" class="tab-panel">
       <textarea id="nums-meanmed" rows="3" placeholder="Enter numbers separated by commas, e.g. 4, 8, 15, 16, 23, 42"></textarea>
+      <label class="scan-btn" for="photo-meanmed">📷 Scan a photo for numbers</label>
+      <input type="file" id="photo-meanmed" accept="image/*" capture="environment" style="display:none;">
+      <p id="scanStatus-meanmed" class="scan-status"></p>
       <button id="calcBtn-meanmed">Show steps</button>
       <p id="err-meanmed" class="error"></p>
       <div id="steps-meanmed" class="steps-box"></div>
@@ -55,6 +61,7 @@
 
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
