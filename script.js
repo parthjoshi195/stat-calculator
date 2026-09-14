@@ -168,3 +168,35 @@ document.getElementById('calcBtn-zscore').addEventListener('click', function () 
   const direction = z >= 0 ? 'above' : 'below';
   stepsEl.innerHTML += '<p class="plain-english">In plain English: this value is ' + fmt(Math.abs(z)) + ' standard deviations ' + direction + ' the mean.</p>';
 });
+
+function setupPhotoScan(fileInputId, statusId, textareaId) {
+  const fileInput = document.getElementById(fileInputId);
+  const status = document.getElementById(statusId);
+  const textarea = document.getElementById(textareaId);
+
+  fileInput.addEventListener('change', function () {
+    const file = fileInput.files[0];
+    if (!file) return;
+
+    status.style.display = 'block';
+    status.textContent = 'Reading numbers from photo... this can take 10-20 seconds.';
+
+    Tesseract.recognize(file, 'eng')
+      .then(function (result) {
+        const text = result.data.text;
+        const matches = text.match(/-?\d+(\.\d+)?/g);
+        if (!matches || matches.length === 0) {
+          status.textContent = 'Could not find any numbers in that photo. Try a clearer picture.';
+          return;
+        }
+        textarea.value = matches.join(', ');
+        status.textContent = 'Found ' + matches.length + ' number(s). Check they look right, then tap "Show steps".';
+      })
+      .catch(function () {
+        status.textContent = 'Something went wrong reading that photo. Try again with a clearer picture.';
+      });
+  });
+}
+
+setupPhotoScan('photo-stddev', 'scanStatus-stddev', 'nums-stddev');
+setupPhotoScan('photo-meanmed', 'scanStatus-meanmed', 'nums-meanmed');
