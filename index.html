@@ -9,24 +9,50 @@
 <body>
 
   <div class="container">
-    <h1>Standard Deviation Solver</h1>
-    <p class="subtitle">Paste your numbers below and see every step of the calculation.</p>
+    <h1>Step-by-Step Stats Solver</h1>
+    <p class="subtitle">Pick a calculation, paste your numbers, and see every step.</p>
 
-    <textarea id="nums" rows="3" placeholder="Enter numbers separated by commas, e.g. 4, 8, 15, 16, 23, 42"></textarea>
-    <button id="calcBtn">Show steps</button>
-    <p id="err1" class="error"></p>
-
-    <div id="steps" class="steps-box"></div>
-
-    <div id="checkSection" class="check-box">
-      <p class="check-label">Check your own answer</p>
-      <div class="check-row">
-        <input id="userAnswer" type="text" placeholder="Your std dev answer">
-        <button id="checkBtn">Check</button>
-      </div>
-      <p id="err2" class="error"></p>
-      <p id="checkResult" class="check-result"></p>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="stddev">Std Deviation</button>
+      <button class="tab-btn" data-tab="meanmed">Mean/Median/Mode</button>
+      <button class="tab-btn" data-tab="zscore">Z-Score</button>
     </div>
+
+    <div id="stddev-panel" class="tab-panel active">
+      <textarea id="nums-stddev" rows="3" placeholder="Enter numbers separated by commas, e.g. 4, 8, 15, 16, 23, 42"></textarea>
+      <button id="calcBtn-stddev">Show steps</button>
+      <p id="err-stddev" class="error"></p>
+      <div id="steps-stddev" class="steps-box"></div>
+      <div id="check-stddev" class="check-box">
+        <p class="check-label">Check your own answer</p>
+        <div class="check-row">
+          <input id="userAnswer-stddev" type="text" placeholder="Your std dev answer">
+          <button id="checkBtn-stddev">Check</button>
+        </div>
+        <p id="checkErr-stddev" class="error"></p>
+        <p id="checkResult-stddev" class="check-result"></p>
+      </div>
+    </div>
+
+    <div id="meanmed-panel" class="tab-panel">
+      <textarea id="nums-meanmed" rows="3" placeholder="Enter numbers separated by commas, e.g. 4, 8, 15, 16, 23, 42"></textarea>
+      <button id="calcBtn-meanmed">Show steps</button>
+      <p id="err-meanmed" class="error"></p>
+      <div id="steps-meanmed" class="steps-box"></div>
+    </div>
+
+    <div id="zscore-panel" class="tab-panel">
+      <p class="field-label">Value (x)</p>
+      <input id="zscore-x" type="text" placeholder="e.g. 85">
+      <p class="field-label">Mean</p>
+      <input id="zscore-mean" type="text" placeholder="e.g. 75">
+      <p class="field-label">Standard deviation</p>
+      <input id="zscore-sd" type="text" placeholder="e.g. 8">
+      <button id="calcBtn-zscore">Show steps</button>
+      <p id="err-zscore" class="error"></p>
+      <div id="steps-zscore" class="steps-box"></div>
+    </div>
+
   </div>
 
   <script src="script.js"></script>
