@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stats Solver - Step by Step</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Standard Deviation Solver</h1>
+    <p class="subtitle">Paste your numbers below and see every step of the calculation.</p>
+
+    <textarea id="nums" rows="3" placeholder="Enter numbers separated by commas, e.g. 4, 8, 15, 16, 23, 42"></textarea>
+    <button id="calcBtn">Show steps</button>
+    <p id="err1" class="error"></p>
+
+    <div id="steps" class="steps-box"></div>
+
+    <div id="checkSection" class="check-box">
+      <p class="check-label">Check your own answer</p>
+      <div class="check-row">
+        <input id="userAnswer" type="text" placeholder="Your std dev answer">
+        <button id="checkBtn">Check</button>
+      </div>
+      <p id="err2" class="error"></p>
+      <p id="checkResult" class="check-result"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
