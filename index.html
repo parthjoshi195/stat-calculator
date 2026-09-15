@@ -20,6 +20,7 @@
       <button class="tab-btn active" data-tab="stddev">Std Deviation</button>
       <button class="tab-btn" data-tab="meanmed">Mean/Median/Mode</button>
       <button class="tab-btn" data-tab="zscore">Z-Score</button>
+      <button class="tab-btn" data-tab="freqtable">Frequency Table</button>
     </div>
 
     <div id="stddev-panel" class="tab-panel active">
@@ -61,6 +62,15 @@
       <button id="calcBtn-zscore">Show steps</button>
       <p id="err-zscore" class="error"></p>
       <div id="steps-zscore" class="steps-box"></div>
+    </div>
+
+    <div id="freqtable-panel" class="tab-panel">
+      <textarea id="nums-freqtable" rows="4" placeholder="Enter your data numbers separated by commas, e.g. 62, 75, 80, 95, 110, 118..."></textarea>
+      <p class="field-label">Class width (interval size)</p>
+      <input id="classwidth-freqtable" type="text" placeholder="e.g. 10">
+      <button id="calcBtn-freqtable">Build table</button>
+      <p id="err-freqtable" class="error"></p>
+      <div id="steps-freqtable" class="steps-box"></div>
     </div>
 
   </div>
