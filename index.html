@@ -1,81 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stats Solver - Step by Step</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StatLab - Statistics Student Tools</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <div class="header-bar">
-    <h2>DATA HUB</h2>
-  </div>
+    <header>
+        <h1>StatLab</h1>
+        <p>Statistics • Data Analysis • Data Science</p>
+    </header>
 
-  <div class="container">
-    <h1>Step-by-Step Stats Solver</h1>
-    <p class="subtitle">Pick a calculation, paste your numbers, and see every step.</p>
+    <main>
 
-    <div class="tabs">
-      <button class="tab-btn active" data-tab="stddev">Std Deviation</button>
-      <button class="tab-btn" data-tab="meanmed">Mean/Median/Mode</button>
-      <button class="tab-btn" data-tab="zscore">Z-Score</button>
-      <button class="tab-btn" data-tab="freqtable">Frequency Table</button>
-    </div>
+        <section class="hero">
+            <h2>Statistics Made Simple</h2>
 
-    <div id="stddev-panel" class="tab-panel active">
-      <textarea id="nums-stddev" rows="3" placeholder="Enter numbers separated by commas, e.g. 4, 8, 15, 16, 23, 42"></textarea>
-      <label class="scan-btn" for="photo-stddev">📷 Scan a photo for numbers</label>
-      <input type="file" id="photo-stddev" accept="image/*" capture="environment" style="display:none;">
-      <p id="scanStatus-stddev" class="scan-status"></p>
-      <button id="calcBtn-stddev">Show steps</button>
-      <p id="err-stddev" class="error"></p>
-      <div id="steps-stddev" class="steps-box"></div>
-      <div id="check-stddev" class="check-box">
-        <p class="check-label">Check your own answer</p>
-        <div class="check-row">
-          <input id="userAnswer-stddev" type="text" placeholder="Your std dev answer">
-          <button id="checkBtn-stddev">Check</button>
-        </div>
-        <p id="checkErr-stddev" class="error"></p>
-        <p id="checkResult-stddev" class="check-result"></p>
-      </div>
-    </div>
+            <p>
+                Calculate, analyse and understand your data
+                in one place.
+            </p>
 
-    <div id="meanmed-panel" class="tab-panel">
-      <textarea id="nums-meanmed" rows="3" placeholder="Enter numbers separated by commas, e.g. 4, 8, 15, 16, 23, 42"></textarea>
-      <label class="scan-btn" for="photo-meanmed">📷 Scan a photo for numbers</label>
-      <input type="file" id="photo-meanmed" accept="image/*" capture="environment" style="display:none;">
-      <p id="scanStatus-meanmed" class="scan-status"></p>
-      <button id="calcBtn-meanmed">Show steps</button>
-      <p id="err-meanmed" class="error"></p>
-      <div id="steps-meanmed" class="steps-box"></div>
-    </div>
+            <button onclick="startUsingStatLab()">
+                Start Using StatLab
+            </button>
+        </section>
 
-    <div id="zscore-panel" class="tab-panel">
-      <p class="field-label">Value (x)</p>
-      <input id="zscore-x" type="text" placeholder="e.g. 85">
-      <p class="field-label">Mean</p>
-      <input id="zscore-mean" type="text" placeholder="e.g. 75">
-      <p class="field-label">Standard deviation</p>
-      <input id="zscore-sd" type="text" placeholder="e.g. 8">
-      <button id="calcBtn-zscore">Show steps</button>
-      <p id="err-zscore" class="error"></p>
-      <div id="steps-zscore" class="steps-box"></div>
-    </div>
+        <section class="tools">
 
-    <div id="freqtable-panel" class="tab-panel">
-      <textarea id="nums-freqtable" rows="4" placeholder="Enter your data numbers separated by commas, e.g. 62, 75, 80, 95, 110, 118..."></textarea>
-      <p class="field-label">Class width (interval size)</p>
-      <input id="classwidth-freqtable" type="text" placeholder="e.g. 10">
-      <button id="calcBtn-freqtable">Build table</button>
-      <p id="err-freqtable" class="error"></p>
-      <div id="steps-freqtable" class="steps-box"></div>
-    </div>
+            <h2>Statistics Tools</h2>
 
-  </div>
+            <div class="tool-container">
 
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-  <script src="script.js"></script>
+                <div class="tool-card">
+                    <h3>📊 Statistical Calculator</h3>
+                    <p>
+                        Calculate mean, median, mode,
+                        variance and standard deviation.
+                    </p>
+                    <button>Open Tool</button>
+                </div>
+
+                <div class="tool-card">
+                    <h3>📈 Data Analysis</h3>
+                    <p>
+                        Analyse datasets and create
+                        useful statistical results.
+                    </p>
+                    <button>Open Tool</button>
+                </div>
+
+                <div class="tool-card">
+                    <h3>🧮 Homework Solver</h3>
+                    <p>
+                        Solve statistics problems with
+                        step-by-step explanations.
+                    </p>
+                    <button>Open Tool</button>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 StatLab</p>
+    </footer>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
