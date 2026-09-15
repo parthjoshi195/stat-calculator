@@ -225,3 +225,79 @@ function setupPhotoScan(fileInputId, statusId, textareaId) {
 
 setupPhotoScan('photo-stddev', 'scanStatus-stddev', 'nums-stddev');
 setupPhotoScan('photo-meanmed', 'scanStatus-meanmed', 'nums-meanmed');
+
+function tallyMarks(count) {
+  const groupsOf5 = Math.floor(count / 5);
+  const remainder = count % 5;
+  let marks = '';
+  for (let i = 0; i < groupsOf5; i++) {
+    marks += '||||/ ';
+  }
+  marks += '|'.repeat(remainder);
+  return marks.trim() || '-';
+}
+
+document.getElementById('calcBtn-freqtable').addEventListener('click', function () {
+  const raw = document.getElementById('nums-freqtable').value;
+  const widthRaw = document.getElementById('classwidth-freqtable').value;
+  const err = document.getElementById('err-freqtable');
+  const stepsEl = document.getElementById('steps-freqtable');
+
+  const numbers = parseNums(raw);
+  const width = parseFloat(widthRaw);
+
+  if (numbers.length < 1) {
+    err.textContent = 'Enter at least one valid number.';
+    err.style.display = 'block';
+    stepsEl.style.display = 'none';
+    return;
+  }
+  if (isNaN(width) || width <= 0) {
+    err.textContent = 'Enter a valid class width (a positive number), e.g. 10.';
+    err.style.display = 'block';
+    stepsEl.style.display = 'none';
+    return;
+  }
+  err.style.display = 'none';
+
+  const smallest = Math.min(...numbers);
+  const largest = Math.max(...numbers);
+  const startPoint = Math.floor(smallest / width) * width;
+
+  const bins = [];
+  let start = startPoint;
+  while (start <= largest) {
+    bins.push({ low: start, high: start + width, count: 0 });
+    start += width;
+  }
+
+  numbers.forEach(function (n) {
+    for (let i = 0; i < bins.length; i++) {
+      const isLast = i === bins.length - 1;
+      if (n >= bins[i].low && (n < bins[i].high || (isLast && n <= bins[i].high))) {
+        bins[i].count++;
+        break;
+      }
+    }
+  });
+
+  let html = '<p class="section-heading">Summary</p>';
+  html += renderTable([
+    { label: 'Smallest number', value: fmt(smallest) },
+    { label: 'Largest number', value: fmt(largest) },
+    { label: 'Class width', value: fmt(width) }
+  ]);
+
+  html += '<p class="section-heading">Frequency Table</p>';
+  html += '<table class="freq-table"><thead><tr><th>Class Interval</th><th>Tally Marks</th><th>Frequency</th></tr></thead><tbody>';
+  let total = 0;
+  bins.forEach(function (b) {
+    total += b.count;
+    html += '<tr><td>' + fmt(b.low) + ' - ' + fmt(b.high) + '</td><td class="freq-tally">' + tallyMarks(b.count) + '</td><td>' + b.count + '</td></tr>';
+  });
+  html += '<tr class="freq-total"><td colspan="2">Total (\u03A3f)</td><td>' + total + '</td></tr>';
+  html += '</tbody></table>';
+
+  stepsEl.innerHTML = html;
+  stepsEl.style.display = 'block';
+});
