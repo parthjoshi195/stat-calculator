@@ -192,6 +192,44 @@ button:hover {
   color: #4a2f7a;
 }
 
+.freq-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 8px;
+  background: #f8f4fc;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.freq-table th {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  padding: 10px 8px;
+  font-size: 12px;
+  text-align: left;
+}
+
+.freq-table td {
+  padding: 10px 8px;
+  font-size: 13px;
+  border-bottom: 1px solid #ece2f5;
+}
+
+.freq-table tr:last-child td {
+  border-bottom: none;
+}
+
+.freq-tally {
+  font-family: monospace;
+  color: #764ba2;
+  letter-spacing: 1px;
+}
+
+.freq-total {
+  font-weight: 700;
+  background: #ece2f5;
+}
+
 .step-card {
   background: #f8f8fb;
   border-left: 3px solid #764ba2;
