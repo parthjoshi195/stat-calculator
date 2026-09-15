@@ -9,8 +9,22 @@ function parseNums(raw) {
   return raw.split(',').map(s => parseFloat(s.trim())).filter(n => !isNaN(n));
 }
 
-function renderSteps(container, steps) {
+function renderTable(rows) {
+  let html = '<table class="results-table"><tbody>';
+  rows.forEach(function (r) {
+    html += '<tr><td class="table-key">' + r.label + '</td><td class="table-val">' + r.value + '</td></tr>';
+  });
+  html += '</tbody></table>';
+  return html;
+}
+
+function renderSteps(container, steps, tableRows) {
   let html = '';
+  if (tableRows) {
+    html += '<p class="section-heading">Summary</p>';
+    html += renderTable(tableRows);
+    html += '<p class="section-heading">Step by step</p>';
+  }
   steps.forEach(function (s) {
     html += '<div class="step-card">';
     html += '<p class="step-label">' + s.label + '</p>';
@@ -71,7 +85,11 @@ document.getElementById('calcBtn-stddev').addEventListener('click', function () 
     { label: 'Step 6: take the square root', formula: 'sqrt(' + fmt(variance) + ')', result: fmt(stdDev) }
   ];
 
-  renderSteps(stepsEl, steps);
+  renderSteps(stepsEl, steps, [
+    { label: 'Mean', value: fmt(mean) },
+    { label: 'Variance', value: fmt(variance) },
+    { label: 'Standard Deviation', value: fmt(stdDev) }
+  ]);
   stepsEl.innerHTML += '<p class="plain-english">In plain English: your data typically varies about ' + fmt(stdDev) + ' points from the average.</p>';
   checkBox.style.display = 'block';
 });
@@ -137,7 +155,11 @@ document.getElementById('calcBtn-meanmed').addEventListener('click', function ()
     { label: 'Step 4: find the mode (most frequent value)', formula: '', result: modeStr }
   ];
 
-  renderSteps(stepsEl, steps);
+  renderSteps(stepsEl, steps, [
+    { label: 'Mean', value: fmt(mean) },
+    { label: 'Median', value: fmt(median) },
+    { label: 'Mode', value: modeStr }
+  ]);
 });
 
 document.getElementById('calcBtn-zscore').addEventListener('click', function () {
@@ -164,7 +186,10 @@ document.getElementById('calcBtn-zscore').addEventListener('click', function () 
     { label: 'Step 2: divide by the standard deviation', formula: fmt(diff) + ' / ' + fmt(sd), result: fmt(z) }
   ];
 
-  renderSteps(stepsEl, steps);
+  renderSteps(stepsEl, steps, [
+    { label: 'Difference (x - mean)', value: fmt(diff) },
+    { label: 'Z-Score', value: fmt(z) }
+  ]);
   const direction = z >= 0 ? 'above' : 'below';
   stepsEl.innerHTML += '<p class="plain-english">In plain English: this value is ' + fmt(Math.abs(z)) + ' standard deviations ' + direction + ' the mean.</p>';
 });
