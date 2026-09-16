@@ -1,94 +1,70 @@
-function startUsingStatLab() {
-    document.querySelector(".tools").scrollIntoView({
-        behavior: "smooth"
-    });
-}
+const toolArea = document.getElementById("toolArea");
+const toolTitle = document.getElementById("toolTitle");
+const toolContent = document.getElementById("toolContent");
+const closeTool = document.getElementById("closeTool");
 
-function openCalculator() {
+const searchInput = document.getElementById("searchInput");
+const searchButton = document.getElementById("searchButton");
+const cameraButton = document.getElementById("cameraButton");
 
-    const data = prompt(
-        "Enter numbers separated by commas:\nExample: 10, 20, 30, 40, 50"
-    );
+const csvInput = document.getElementById("csvInput");
+const imageInput = document.getElementById("imageInput");
 
-    if (!data) {
-        return;
-    }
+let currentDataset = null;
+let lastAnalysis = null;
 
-    const numbers = data
-        .split(",")
-        .map(Number)
-        .filter(num => !isNaN(num));
 
-    if (numbers.length === 0) {
-        alert("Please enter valid numbers.");
-        return;
-    }
+/* =========================
+   TOOL OPENING
+========================= */
 
-    // Mean
-    const sum = numbers.reduce((total, num) => total + num, 0);
-    const mean = sum / numbers.length;
+document.querySelectorAll("[data-tool]").forEach(button => {
 
-    // Sort numbers
-    const sorted = [...numbers].sort((a, b) => a - b);
+    button.addEventListener("click", () => {
 
-    // Median
-    let median;
+        const tool = button.dataset.tool;
 
-    const middle = Math.floor(sorted.length / 2);
+        if (tool === "home") {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+            return;
+        }
 
-    if (sorted.length % 2 === 0) {
-        median = (sorted[middle - 1] + sorted[middle]) / 2;
-    } else {
-        median = sorted[middle];
-    }
+        openTool(tool);
 
-    // Mode
-    const frequency = {};
-
-    numbers.forEach(num => {
-        frequency[num] = (frequency[num] || 0) + 1;
     });
 
-    const highestFrequency = Math.max(
-        ...Object.values(frequency)
-    );
+});
 
-    const modes = Object.keys(frequency)
-        .filter(num => frequency[num] === highestFrequency);
 
-    let mode;
+function openTool(tool) {
 
-    if (highestFrequency === 1) {
-        mode = "No mode";
-    } else {
-        mode = modes.join(", ");
+    toolArea.hidden = false;
+
+    const titles = {
+        frequency: "Frequency Analysis",
+        stats: "Statistics & Probability",
+        tutor: "AI Statistics Tutor",
+        workspace: "Data Workspace",
+        visualisation: "Data Visualisation"
+    };
+
+    toolTitle.textContent = titles[tool] || "DATA HUB";
+
+    if (tool === "frequency") {
+        showFrequency();
     }
 
-    // Population Variance
-    const variance =
-        numbers.reduce(
-            (total, num) => total + Math.pow(num - mean, 2),
-            0
-        ) / numbers.length;
+    if (tool === "stats") {
+        showStatistics();
+    }
 
-    // Population Standard Deviation
-    const standardDeviation = Math.sqrt(variance);
+    if (tool === "tutor") {
+        showTutor();
+    }
 
-    // Show results
-    alert(
-        "STATISTICAL RESULTS\n\n" +
-
-        "Data: " + numbers.join(", ") + "\n\n" +
-
-        "Mean: " + mean.toFixed(2) + "\n" +
-
-        "Median: " + median.toFixed(2) + "\n" +
-
-        "Mode: " + mode + "\n" +
-
-        "Variance: " + variance.toFixed(2) + "\n" +
-
-        "Standard Deviation: " +
-        standardDeviation.toFixed(2)
-    );
-}
+    if (tool === "workspace") {
+        showWorkspace();
+    }
