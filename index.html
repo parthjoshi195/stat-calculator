@@ -4,75 +4,315 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>StatLab - Statistics Student Tools</title>
+    <title>DATA HUB — Statistics & Data Science Lab</title>
+
+    <meta name="description"
+        content="DATA HUB is an online statistics and data science platform for students. Calculate statistics, analyze datasets and visualize data.">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header>
-        <h1>StatLab</h1>
-        <p>Statistics • Data Analysis • Data Science</p>
-    </header>
+    <div class="app">
 
-    <main>
+        <!-- HEADER -->
+        <header class="topbar">
 
-        <section class="hero">
-            <h2>Statistics Made Simple</h2>
-
-            <p>
-                Calculate, analyse and understand your data
-                in one place.
-            </p>
-
-            <button onclick="startUsingStatLab()">
-                Start Using StatLab
-            </button>
-        </section>
-
-        <section class="tools">
-
-            <h2>Statistics Tools</h2>
-
-            <div class="tool-container">
-
-                <div class="tool-card">
-                    <h3>📊 Statistical Calculator</h3>
-                    <p>
-                        Calculate mean, median, mode,
-                        variance and standard deviation.
-                    </p>
-                    <button>Open Tool</button>
-                </div>
-
-                <div class="tool-card">
-                    <h3>📈 Data Analysis</h3>
-                    <p>
-                        Analyse datasets and create
-                        useful statistical results.
-                    </p>
-                    <button>Open Tool</button>
-                </div>
-
-                <div class="tool-card">
-                    <h3>🧮 Homework Solver</h3>
-                    <p>
-                        Solve statistics problems with
-                        step-by-step explanations.
-                    </p>
-                    <button>Open Tool</button>
-                </div>
-
+            <div class="logo">
+                DATA<span>HUB</span>
             </div>
 
-        </section>
+            <nav class="nav">
+                <button data-tool="home">Home</button>
+                <button data-tool="frequency">Frequency</button>
+                <button data-tool="stats">Statistics</button>
+                <button data-tool="workspace">Workspace</button>
+                <button data-tool="visualisation">Visualisation</button>
+                <button data-tool="tutor">AI Tutor</button>
+            </nav>
 
-    </main>
+            <button class="theme-button" id="themeButton" type="button">
+                ◐
+            </button>
 
-    <footer>
-        <p>© 2026 StatLab</p>
-    </footer>
+        </header>
+
+
+        <!-- MAIN -->
+        <main>
+
+            <!-- HERO -->
+            <section class="hero">
+
+                <div class="hero-content">
+
+                    <p class="eyebrow">
+                        STATISTICS • DATA ANALYSIS • DATA SCIENCE
+                    </p>
+
+                    <h1>
+                        DATA
+                        <span>HUB</span>
+                    </h1>
+
+                    <p class="hero-text">
+                        Your complete online workspace for
+                        statistics, data analysis and learning.
+                    </p>
+
+                    <button
+                        class="primary-button"
+                        data-tool="workspace"
+                        type="button">
+                        Start Analysing →
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- TOOLS -->
+            <section class="tools-section">
+
+                <div class="section-heading">
+                    <p>EXPLORE</p>
+                    <h2>What do you want to do?</h2>
+                </div>
+
+
+                <div class="tool-grid">
+
+                    <!-- FREQUENCY -->
+                    <button
+                        class="tool-card"
+                        data-tool="frequency"
+                        type="button">
+
+                        <div class="tool-icon">ƒ</div>
+
+                        <div>
+                            <h3>Frequency</h3>
+
+                            <p>
+                                Build frequency tables,
+                                relative frequency and
+                                cumulative frequency.
+                            </p>
+                        </div>
+
+                        <span class="arrow">↗</span>
+
+                    </button>
+
+
+                    <!-- STATISTICS -->
+                    <button
+                        class="tool-card"
+                        data-tool="stats"
+                        type="button">
+
+                        <div class="tool-icon">Σ</div>
+
+                        <div>
+                            <h3>Stat & Probability</h3>
+
+                            <p>
+                                Mean, median, mode,
+                                variance, standard deviation
+                                and probability.
+                            </p>
+                        </div>
+
+                        <span class="arrow">↗</span>
+
+                    </button>
+
+
+                    <!-- AI TUTOR -->
+                    <button
+                        class="tool-card"
+                        data-tool="tutor"
+                        type="button">
+
+                        <div class="tool-icon">AI</div>
+
+                        <div>
+                            <h3>AI Statistics Tutor</h3>
+
+                            <p>
+                                Ask statistics questions
+                                and learn concepts
+                                step-by-step.
+                            </p>
+                        </div>
+
+                        <span class="arrow">↗</span>
+
+                    </button>
+
+
+                    <!-- DATA WORKSPACE -->
+                    <button
+                        class="tool-card"
+                        data-tool="workspace"
+                        type="button">
+
+                        <div class="tool-icon">▦</div>
+
+                        <div>
+                            <h3>Data Workspace</h3>
+
+                            <p>
+                                Upload a CSV dataset,
+                                inspect your data and
+                                calculate statistics.
+                            </p>
+                        </div>
+
+                        <span class="arrow">↗</span>
+
+                    </button>
+
+
+                    <!-- VISUALISATION -->
+                    <button
+                        class="tool-card"
+                        data-tool="visualisation"
+                        type="button">
+
+                        <div class="tool-icon">◒</div>
+
+                        <div>
+                            <h3>Data Visualisation</h3>
+
+                            <p>
+                                Turn numbers into
+                                useful charts and
+                                visual summaries.
+                            </p>
+                        </div>
+
+                        <span class="arrow">↗</span>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- SEARCH -->
+            <section class="search-section">
+
+                <div class="search-box">
+
+                    <button
+                        id="cameraButton"
+                        class="camera-button"
+                        type="button"
+                        title="Upload a question image">
+
+                        📷
+
+                    </button>
+
+
+                    <input
+                        id="searchInput"
+                        type="text"
+                        placeholder="Search statistics tools, topics or questions..."
+                        autocomplete="off">
+
+
+                    <button
+                        id="searchButton"
+                        class="search-button"
+                        type="button">
+
+                        🔍
+
+                    </button>
+
+                </div>
+
+                <p class="search-help">
+                    Try: "mean", "frequency", "standard deviation",
+                    "probability", "CSV", or "t-test"
+                </p>
+
+            </section>
+
+
+            <!-- WORKING TOOL AREA -->
+            <section
+                id="toolArea"
+                class="tool-area"
+                hidden>
+
+                <div class="tool-area-header">
+
+                    <div>
+                        <p class="section-label">DATA HUB TOOL</p>
+                        <h2 id="toolTitle">Tool</h2>
+                    </div>
+
+                    <button
+                        id="closeTool"
+                        class="close-button"
+                        type="button">
+
+                        ✕
+
+                    </button>
+
+                </div>
+
+
+                <div id="toolContent"></div>
+
+            </section>
+
+        </main>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-logo">
+                DATA HUB
+            </div>
+
+            <p>
+                Statistics • Data Analysis • Data Science
+            </p>
+
+            <p class="copyright">
+                Built for students.
+            </p>
+
+        </footer>
+
+    </div>
+
+
+    <!-- HIDDEN FILE INPUTS -->
+
+    <input
+        type="file"
+        id="csvInput"
+        accept=".csv,text/csv"
+        hidden>
+
+
+    <input
+        type="file"
+        id="imageInput"
+        accept="image/*"
+        capture="environment"
+        hidden>
+
 
     <script src="script.js"></script>
 
